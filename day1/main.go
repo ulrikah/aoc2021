@@ -23,7 +23,7 @@ func LinesToInts(file *os.File) (ints []int, err error) {
 
 func countIncrements(numbers []int) int {
 	count := 0
-	prev := 0
+	prev := -1
 	for idx, next := range numbers {
 		if idx == 0 {
 			continue
@@ -36,14 +36,45 @@ func countIncrements(numbers []int) int {
 	return count
 }
 
+func windowedSums(numbers []int, windowSize int) (sums []int) {
+	for idx := 0; idx < len(numbers)-(windowSize-1); idx++ {
+		sum := 0
+		for i := idx; i < idx+windowSize; i++ {
+			sum += numbers[i]
+		}
+		sums = append(sums, sum)
+	}
+	return
+}
+
 func main() {
-	fmt.Println("Hello, World!")
+	// test
+	testData := []int{
+		199,
+		200,
+		208,
+		210,
+		200,
+		207,
+		240,
+		269,
+		260,
+		263,
+	}
+	fmt.Println(countIncrements(testData))
+	fmt.Println(windowedSums(testData, 3))
+	fmt.Println(countIncrements(windowedSums(testData, 3)))
+
 	f, err := os.Open("day1/input.txt")
+	defer f.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer f.Close()
-
 	numbers, err := LinesToInts(f)
+
+	// 1.1
 	fmt.Println(countIncrements(numbers))
+	// 1.2
+	fmt.Println(countIncrements(windowedSums(numbers, 3)))
+
 }
