@@ -85,7 +85,7 @@ func main() {
 	fmt.Println(calculatePosition(testData))
 	fmt.Println(calculatePositionWithAim(testData))
 
-	f, err := os.Open("day2/input.txt")
+	f, err := os.Open("day02/input.txt")
 	defer f.Close()
 	if err != nil {
 		log.Fatal(err)

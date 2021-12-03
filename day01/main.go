@@ -65,7 +65,7 @@ func main() {
 	fmt.Println(windowedSums(testData, 3))
 	fmt.Println(countIncrements(windowedSums(testData, 3)))
 
-	f, err := os.Open("day1/input.txt")
+	f, err := os.Open("day01/input.txt")
 	defer f.Close()
 	if err != nil {
 		log.Fatal(err)
